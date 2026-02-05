@@ -11,7 +11,7 @@ const VedicHero = () => {
   // Helper function to find the active content based on ID
   const activeContent = vedicContent.find((item) => item.id === activeTabId);
 
-  console.log(heroBg)
+  
   return (
     <section className="w-full bg-[#F5E6CA] py-8 relative">
       {/* Background Pattern Overlay (Optional CSS trick to look like damask) */}

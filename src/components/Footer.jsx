@@ -2,14 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; // 1. Import Hook
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
- 
+
 const Footer = () => {
   const { t } = useTranslation(); // 2. Initialize Hook
 
   return (
     // Main Container
-    <footer className="bg-[#486957] text-orange-50 font-sans relative pt-16 pb-8 overflow-hidden">
-      
+   <footer className="bg-gradient-to-br from-[#2c0b0e] via-[#4a0e0e] to-[#1a0505] text-orange-50 font-sans relative pt-16 pb-8 overflow-hidden">
       {/* Decorative Background */}
       {/* <div className="absolute top-0 right-0 opacity-5 pointer-events-none">
          <svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +18,7 @@ const Footer = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
-          
+
           {/* COLUMN 1: About / Brand */}
           {/* <div className="space-y-6">
             <div className="flex items-center gap-3">
@@ -48,11 +47,11 @@ const Footer = () => {
               <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-yellow-500 rounded-full"></span>
             </h3>
             <div className="space-y-5">
-              
+
               {/* Address */}
               <div className="flex items-start gap-4 group cursor-pointer">
                 <div className="mt-1 bg-red-900 p-2 rounded-lg group-hover:bg-yellow-500 transition-colors">
-                    <FaMapMarkerAlt className="text-yellow-400 group-hover:text-red-900" />
+                  <FaMapMarkerAlt className="text-yellow-400 group-hover:text-red-900" />
                 </div>
                 <p className="text-sm text-red-600 leading-relaxed">
                   {t('footer.contact.address')}
@@ -62,7 +61,7 @@ const Footer = () => {
               {/* Email */}
               <div className="flex items-center gap-4 group cursor-pointer">
                 <div className="bg-red-900 p-2 rounded-lg group-hover:bg-yellow-500 transition-colors">
-                    <FaEnvelope className="text-yellow-400 group-hover:text-red-900" />
+                  <FaEnvelope className="text-yellow-400 group-hover:text-red-900" />
                 </div>
                 <p className="text-sm text-red-600">{t('footer.contact.email')}</p>
               </div>
@@ -70,7 +69,7 @@ const Footer = () => {
               {/* Phone */}
               <div className="flex items-center gap-4 group cursor-pointer">
                 <div className="bg-red-900 p-2 rounded-lg group-hover:bg-yellow-500 transition-colors">
-                    <FaPhoneAlt className="text-yellow-400 group-hover:text-red-900" />
+                  <FaPhoneAlt className="text-yellow-400 group-hover:text-red-900" />
                 </div>
                 <p className="text-sm text-red-600">{t('footer.contact.phone')}</p>
               </div>
@@ -112,8 +111,8 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center text-sm text-red-300">
           <p>&copy; {new Date().getFullYear()} {t('footer.copyright')}</p>
           <div className="flex gap-6 mt-4 md:mt-0">
-             <Link to="/" className="hover:text-yellow-400 transition">{t('footer.links.privacy')}</Link>
-             <Link to="/" className="hover:text-yellow-400 transition">{t('footer.links.terms')}</Link>
+            <Link to="/" className="hover:text-yellow-400 transition">{t('footer.links.privacy')}</Link>
+            <Link to="/" className="hover:text-yellow-400 transition">{t('footer.links.terms')}</Link>
           </div>
         </div>
 

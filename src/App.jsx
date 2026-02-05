@@ -8,11 +8,16 @@ import ContactPage from './components/Contactus';
 
 import { pageData } from './components/Vedicdata';
 import GenericPage from './components/Customcomp';
+import YearlyHoroscope from './components/Yearlyhoroscope';
+
+
 import Aboutimg from "./assets/aboutimg.jpeg"
 import Yantraimg from "./assets/yantra.png"
 import Dosha from "./assets/dosha.png"
 import Gemimg from "./assets/gems.png"
 import Rudra from "./assets/rudra.png"
+import Vasthu from "./assets/vasthu.png"
+import Services from "./assets/services.png"
 // Simple placeholder page component
 const Home = () => <div className="p-10 text-center">
 </div>;
@@ -31,6 +36,9 @@ function App() {
             {/* Home Page uses the Sidebar component we made earlier */}
             <Route path="/" element={<HomePage />} />
 
+            <Route path="/horoscope/:sign" element={<YearlyHoroscope />} />
+
+
             {/* Other Pages reuse the GenericPage component with different data */}
             <Route
               path="/about"
@@ -38,11 +46,11 @@ function App() {
             />
             <Route
               path="/services"
-              element={<GenericPage title="Our Services" description={pageData.services} />}
+              element={<GenericPage title="Our Services" description={pageData.services} imageSrc={Services} />}
             />
             <Route
               path="/vastu"
-              element={<GenericPage title="Vastu Shastra" description={pageData.vastu} />}
+              element={<GenericPage title="Vastu Shastra" description={pageData.vastu} imageSrc={Vasthu} />}
             />
             <Route
               path="/dosha-remedies"

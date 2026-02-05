@@ -142,8 +142,7 @@ const HeroSection = () => {
                 <img
                   src={Astrologer}
                   alt={t('hero.astrologer_name')}
-                  // Responsive Height: h-48 (mobile) -> md:h-72 (desktop)
-                  className="w-full h-48 md:h-72 object-cover object-top rounded-lg mb-3"
+                  className="w-full h-48 md:h-72 object-cover  object-[center_50%] rounded-lg mb-3"
                 />
                 <div className="text-center pb-1">
                   <h3 className="text-lg md:text-xl font-bold text-gray-800 font-serif">{t('hero.astrologer_name')}</h3>
