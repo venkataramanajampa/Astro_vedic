@@ -7,7 +7,7 @@ const WhatsAppWidget = () => {
   const [message, setMessage] = useState('');
 
   //atrologer details
-  const phoneNumber = "+91 79895 25323";
+  const phoneNumber = "917989525323";
   const astrologerName = "Acharya Sharma"; // Name displayed in header
 
   const toggleChat = () => {
