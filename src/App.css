@@ -1,55 +1,34 @@
+/*
+  ✅ FIXES APPLIED:
+  1. Removed `padding: 2rem` from #root — this was causing the ~32px gap all
+     around every section making cards look "floating" on the background.
+  2. Removed `max-width: 1280px` from #root — this was restricting the layout
+     width so the html/body background colour bled through on both sides.
+  3. Set `text-align: left` (was `center`) so child components handle their
+     own alignment rather than being force-centered by the root.
+  Individual components that need centering use `mx-auto` or `text-center`
+  on their own containers, which is the correct approach.
+*/
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;          /* ← removed the 2rem that caused the gap */
+  text-align: left;    /* ← components manage their own alignment */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+/* ── Utility animations used globally ──────────────────────────────────────── */
 @keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
-
 .animate-spin-slow {
   animation: spin-slow 8s linear infinite;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Preserve logo animation if needed elsewhere */
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }

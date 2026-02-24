@@ -1,70 +1,74 @@
 @import "tailwindcss";
 
-/* :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/*
+  ✅ FIXES APPLIED:
+  The entire :root / body / html block was commented out, so the browser
+  defaulted to a white background on <html> and <body>. This was the root
+  cause of the light background showing through between and around components.
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  Now we set a deep cosmic midnight colour on EVERY level:
+    html  → catches any scroll-overscroll bounce area (iOS rubber-band, etc.)
+    body  → the actual document background
+    #root → the React mount point (also fixed in App.css)
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  Colour chosen: #07040F — deepest midnight indigo/black, slightly warmer
+  than pure black, giving a rich "infinite space" feel that perfectly
+  complements the #0B0918 component backgrounds. Both are so close that
+  even if a 1px gap ever appears between sections, it's invisible.
+*/
+
+/* ── Global reset & base ───────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html {
+  background-color: #07040F;
+  /* deepest cosmic midnight */
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #07040F;
+  /* matches html — no white flash on overscroll */
+
+  /* Smooth font rendering */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Default text colour for anything not overridden by components */
+  color: #EDE0C8;
+  color-scheme: dark;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ── Links — unstyled by default, components style their own ──────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* ── Scrollbar — dark themed so it doesn't break the aesthetic ───────────── */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
+::-webkit-scrollbar-track {
+  background: #07040F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2B2250;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A84C55;
+}

@@ -1,121 +1,277 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // 1. Import Hook
-import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
+import {
+  FaFacebookF, FaInstagram, FaYoutube,
+  FaMapMarkerAlt, FaPhoneAlt, FaEnvelope,
+  FaWhatsapp
+} from 'react-icons/fa';
 
+// ─── DESIGN TOKENS (match site-wide palette) ─────────────────────────────────
+const GOLD = "#C9A84C";
+const GOLD_SOFT = "#F0D080";
+const BG = "#07040F";          // matches html/body/App root
+const SURFACE = "#0F0B1F";
+const SURFACE_UP = "#16112A";
+const BORDER = "#2B2250";
+const TEXT_MAIN = "#EDE0C8";
+const TEXT_SUB = "#7A6FA0";
+const PHONE = "917989525323";
+
+// ─── NAV LINKS ────────────────────────────────────────────────────────────────
+const NAV_LINKS = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Vastu Shastra", to: "/vastu" },
+  { label: "Dosha Remedies", to: "/dosha-remedies" },
+  { label: "Gem Stones", to: "/gem-stones" },
+  { label: "Rudraksha", to: "/rudraksha" },
+  { label: "Yantra", to: "/yantra" },
+  { label: "Contact", to: "/contact" },
+];
+
+const SOCIALS = [
+  { icon: FaFacebookF, href: "#", label: "Facebook" },
+  { icon: FaInstagram, href: "#", label: "Instagram" },
+  { icon: FaYoutube, href: "#", label: "YouTube" },
+  {
+    icon: FaWhatsapp,
+    href: `https://wa.me/${PHONE}?text=${encodeURIComponent("Namaste Guruji 🙏 I would like to connect with you.")}`,
+    label: "WhatsApp",
+    highlight: true,
+  },
+];
+
+// ─── COMPONENT ────────────────────────────────────────────────────────────────
 const Footer = () => {
-  const { t } = useTranslation(); // 2. Initialize Hook
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
 
   return (
-    // Main Container
-   <footer className="bg-gradient-to-br from-[#2c0b0e] via-[#4a0e0e] to-[#1a0505] text-orange-50 font-sans relative pt-16 pb-8 overflow-hidden">
-      {/* Decorative Background */}
-      {/* <div className="absolute top-0 right-0 opacity-5 pointer-events-none">
-         <svg width="400" height="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#FCA5A5" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-4.9C93.5,9.5,82.2,23.2,70.8,35.1C59.4,47,47.9,57,35.3,65.6C22.7,74.1,9,81.1,-3.3,86.8C-15.6,92.5,-26.4,96.9,-36.4,92.5C-46.4,88.1,-55.6,75,-63.4,61.9C-71.2,48.8,-77.6,35.8,-80.7,21.9C-83.8,8,-83.6,-6.8,-78.3,-20.4C-73,-34,-62.6,-46.4,-50.7,-54.3C-38.8,-62.2,-25.4,-65.6,-11.8,-63.6C1.8,-61.6,15.4,-54.2,30.5,-83.6L44.7,-76.4Z" transform="translate(100 100)" />
-         </svg>
-      </div> */}
+    <footer
+      style={{
+        background: `linear-gradient(180deg, ${BG} 0%, #050210 100%)`,
+        borderTop: `1px solid ${BORDER}`,
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      {/* Background glow */}
+      <div style={{
+        position: "absolute", inset: 0, pointerEvents: "none",
+        background: `radial-gradient(ellipse at 50% 0%, ${GOLD}08, transparent 60%)`,
+      }} />
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
+      {/* ── TOP GOLD RULE ── */}
+      <div style={{
+        height: "1px",
+        background: `linear-gradient(90deg, transparent, ${GOLD}50, transparent)`,
+      }} />
 
-          {/* COLUMN 1: About / Brand */}
-          {/* <div className="space-y-6">
+      {/* ── MAIN GRID ── */}
+      <div
+        className="relative z-10 max-w-6xl mx-auto px-6 md:px-8"
+        style={{ paddingTop: "56px", paddingBottom: "32px" }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+
+          {/* ── COL 1: Brand ── */}
+          <div className="space-y-5">
+            {/* Logo / brand block */}
             <div className="flex items-center gap-3">
-              
-              <div className="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-red-900 font-bold text-xl shadow-lg border-2 border-white">
-                K
+              <div
+                className="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold flex-shrink-0"
+                style={{
+                  background: `linear-gradient(135deg, ${GOLD}, ${GOLD_SOFT})`,
+                  color: "#07040F",
+                  boxShadow: `0 0 20px ${GOLD}40`,
+                  fontFamily: "Georgia, serif",
+                }}
+              >
+                ॐ
               </div>
               <div>
-                <h3 className="text-xl font-serif font-bold text-yellow-400">
-                  {t('footer.brand_name')}
+                <h3 className="font-bold text-base leading-tight" style={{ color: GOLD_SOFT, fontFamily: "Georgia, serif" }}>
+                  Sri Karthikeya
                 </h3>
-                <p className="text-xs text-orange-500">
-                  {t('footer.tagline')}
-                </p>
+                <p className="text-xs" style={{ color: TEXT_SUB }}>Jyothisya Nivas</p>
               </div>
             </div>
-            <p className="text-orange-500 text-sm leading-relaxed border-l-4 border-yellow-500 pl-4">
-              {t('footer.about_desc')}
+
+            <p className="text-sm leading-relaxed" style={{ color: TEXT_SUB }}>
+              Guiding souls through the wisdom of Vedic astrology for over 28 years.
+              Trusted by 5,000+ clients across 35+ countries.
             </p>
-          </div> */}
 
-          {/* COLUMN 2: Contact Info */}
-          <div>
-            <h3 className="text-xl font-serif font-bold text-yellow-400 mb-6 relative inline-block">
-              {t('footer.titles.contact')}
-              <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-yellow-500 rounded-full"></span>
-            </h3>
-            <div className="space-y-5">
-
-              {/* Address */}
-              <div className="flex items-start gap-4 group cursor-pointer">
-                <div className="mt-1 bg-red-900 p-2 rounded-lg group-hover:bg-yellow-500 transition-colors">
-                  <FaMapMarkerAlt className="text-yellow-400 group-hover:text-red-900" />
-                </div>
-                <p className="text-sm text-red-600 leading-relaxed">
-                  {t('footer.contact.address')}
-                </p>
-              </div>
-
-              {/* Email */}
-              <div className="flex items-center gap-4 group cursor-pointer">
-                <div className="bg-red-900 p-2 rounded-lg group-hover:bg-yellow-500 transition-colors">
-                  <FaEnvelope className="text-yellow-400 group-hover:text-red-900" />
-                </div>
-                <p className="text-sm text-red-600">{t('footer.contact.email')}</p>
-              </div>
-
-              {/* Phone */}
-              <div className="flex items-center gap-4 group cursor-pointer">
-                <div className="bg-red-900 p-2 rounded-lg group-hover:bg-yellow-500 transition-colors">
-                  <FaPhoneAlt className="text-yellow-400 group-hover:text-red-900" />
-                </div>
-                <p className="text-sm text-red-600">{t('footer.contact.phone')}</p>
-              </div>
-
+            {/* Social icons */}
+            <div className="flex gap-3 pt-1">
+              {SOCIALS.map(({ icon: Icon, href, label, highlight }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href !== "#" ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                  style={{
+                    background: highlight ? "#25D36622" : SURFACE_UP,
+                    border: `1px solid ${highlight ? "#25D366" : BORDER}`,
+                    color: highlight ? "#25D366" : TEXT_SUB,
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.background = highlight ? "#25D366" : `${GOLD}22`;
+                    e.currentTarget.style.color = highlight ? "#fff" : GOLD;
+                    e.currentTarget.style.borderColor = highlight ? "#25D366" : GOLD;
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.background = highlight ? "#25D36622" : SURFACE_UP;
+                    e.currentTarget.style.color = highlight ? "#25D366" : TEXT_SUB;
+                    e.currentTarget.style.borderColor = highlight ? "#25D366" : BORDER;
+                  }}
+                >
+                  <Icon size={14} />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* COLUMN 3: Socials */}
+          {/* ── COL 2: Quick Links ── */}
           <div>
-            <h3 className="text-xl font-serif font-bold text-yellow-400 mb-6 relative inline-block">
-              {t('footer.titles.follow')}
-              <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-yellow-500 rounded-full"></span>
-            </h3>
-            <p className="text-green-400 text-sm mb-6">
-              {t('footer.social_desc')}
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-red-900 flex items-center justify-center text-white hover:bg-yellow-500 hover:text-red-900 transition-all transform hover:-translate-y-1 shadow-md">
-                <FaFacebookF />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-red-900 flex items-center justify-center text-white hover:bg-yellow-500 hover:text-red-900 transition-all transform hover:-translate-y-1 shadow-md">
-                <FaInstagram />
-              </a>
-              {/* <a href="#" className="w-10 h-10 rounded-full bg-red-900 flex items-center justify-center text-white hover:bg-yellow-500 hover:text-red-900 transition-all transform hover:-translate-y-1 shadow-md">
-                <FaTwitter />
-              </a> */}
-              <a href="#" className="w-10 h-10 rounded-full bg-red-900 flex items-center justify-center text-white hover:bg-yellow-500 hover:text-red-900 transition-all transform hover:-translate-y-1 shadow-md">
-                <FaYoutube />
-              </a>
+            <h4
+              className="text-sm font-bold uppercase tracking-widest mb-5 pb-3 relative"
+              style={{ color: GOLD, letterSpacing: "0.2em" }}
+            >
+              Quick Links
+              <span
+                className="absolute bottom-0 left-0 rounded-full"
+                style={{ height: "1px", width: "40px", background: GOLD }}
+              />
+            </h4>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+              {NAV_LINKS.map(({ label, to }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className="text-sm transition-all duration-200 flex items-center gap-1.5 group"
+                  style={{ color: TEXT_SUB }}
+                  onMouseEnter={e => e.currentTarget.style.color = GOLD_SOFT}
+                  onMouseLeave={e => e.currentTarget.style.color = TEXT_SUB}
+                >
+                  <span
+                    style={{
+                      width: "4px", height: "4px", borderRadius: "50%",
+                      background: GOLD, flexShrink: 0, opacity: 0.5,
+                    }}
+                  />
+                  {label}
+                </Link>
+              ))}
             </div>
           </div>
 
+          {/* ── COL 3: Contact ── */}
+          <div>
+            <h4
+              className="text-sm font-bold uppercase tracking-widest mb-5 pb-3 relative"
+              style={{ color: GOLD, letterSpacing: "0.2em" }}
+            >
+              Contact Us
+              <span
+                className="absolute bottom-0 left-0 rounded-full"
+                style={{ height: "1px", width: "40px", background: GOLD }}
+              />
+            </h4>
+
+            <div className="space-y-4">
+              {[
+                {
+                  Icon: FaPhoneAlt,
+                  label: "Call / WhatsApp",
+                  value: "+91 79895 25323",
+                  href: `https://wa.me/${PHONE}`,
+                },
+                {
+                  Icon: FaEnvelope,
+                  label: "Email",
+                  value: "kvrastro@gmail.com",
+                  href: "mailto:kvrastro@gmail.com",
+                },
+                {
+                  Icon: FaMapMarkerAlt,
+                  label: "Location",
+                  value: "Andhra Pradesh, India",
+                  href: null,
+                },
+              ].map(({ Icon, label, value, href }) => (
+                <div key={label} className="flex items-start gap-3 group">
+                  <div
+                    className="mt-0.5 w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-200"
+                    style={{ background: `${GOLD}18`, border: `1px solid ${GOLD}33` }}
+                  >
+                    <Icon size={12} style={{ color: GOLD }} />
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wider mb-0.5" style={{ color: TEXT_SUB }}>
+                      {label}
+                    </p>
+                    {href ? (
+                      <a
+                        href={href}
+                        target={href.startsWith("http") ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        className="text-sm font-medium transition-colors duration-200"
+                        style={{ color: TEXT_MAIN }}
+                        onMouseEnter={e => e.currentTarget.style.color = GOLD_SOFT}
+                        onMouseLeave={e => e.currentTarget.style.color = TEXT_MAIN}
+                      >
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="text-sm font-medium" style={{ color: TEXT_MAIN }}>{value}</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Separator Line */}
-        <div className="border-t border-red-900 mt-12 mb-8"></div>
+        {/* ── DIVIDER ── */}
+        <div
+          className="my-8"
+          style={{ height: "1px", background: `linear-gradient(90deg, transparent, ${BORDER}, transparent)` }}
+        />
 
-        {/* Copyright */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-red-300">
-          <p>&copy; {new Date().getFullYear()} {t('footer.copyright')}</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <Link to="/" className="hover:text-yellow-400 transition">{t('footer.links.privacy')}</Link>
-            <Link to="/" className="hover:text-yellow-400 transition">{t('footer.links.terms')}</Link>
+        {/* ── BOTTOM BAR ── */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs" style={{ color: TEXT_SUB }}>
+          <p>
+            © {year}{" "}
+            <span style={{ color: GOLD }}>Sri Karthikeya Jyothisya Nivas</span>
+            {" "}· All rights reserved
+          </p>
+          <div className="flex gap-6">
+            <Link
+              to="/"
+              className="transition-colors duration-200"
+              style={{ color: TEXT_SUB }}
+              onMouseEnter={e => e.currentTarget.style.color = GOLD}
+              onMouseLeave={e => e.currentTarget.style.color = TEXT_SUB}
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/"
+              className="transition-colors duration-200"
+              style={{ color: TEXT_SUB }}
+              onMouseEnter={e => e.currentTarget.style.color = GOLD}
+              onMouseLeave={e => e.currentTarget.style.color = TEXT_SUB}
+            >
+              Terms of Service
+            </Link>
           </div>
         </div>
-
       </div>
     </footer>
   );

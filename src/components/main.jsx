@@ -1,152 +1,55 @@
-// import React from 'react';
-// import HeroSection from './Vedicbanner'; // Your existing component
-// import VedicHero from './Hero';  // Your existing component
-// import WhatsAppWidget from './WhatsappWidget';
-// import ServicesSection from './Servicesection';
-// import ZodiacCarousel from './Zodiaccorosel';
-// // import BirthChart from './KundliGenerator';
-// import StatsSection from './Stats';
-// import Footer from './Footer';
-// import Astro from "../assets/astrobg.png"
-
-// const HomePage = () => {
-//   return (
-//     <div className="min-h-screen flex flex-col bg-orange-50">
-
-//       {/* 1. HERO SECTION */}
-//       {/* Ensure your HeroSection has a pb (padding-bottom) of roughly 20-32 to allow space */}
-//       <div className="relative z-0 mb-16">
-//         <HeroSection />
-//       </div>
-
-//       {/* 2. MAIN CONTENT (VedicHero) */}
-//       {/* -mt-20: Pulls this section UP by 5rem to overlap the banner 
-//           z-10:   Ensures this sits ON TOP of the banner
-//           px-4:   Prevents content touching edges on mobile
-//       */}
-//       <div
-//         className="relative"
-//         style={{
-//           // Apply the imported image here
-//           backgroundImage: `url(${Astro})`,
-//           backgroundSize: 'cover',
-//           backgroundPosition: 'center',
-//           backgroundAttachment: 'fixed' // Makes the image stay still while scrolling (Parallax)
-//         }}
-//       >
-//         {/* Optional: White Overlay so text remains readable on top of the image */}
-//         <div className="absolute inset-0 bg-white/80 z-0"></div>
-
-//         {/* Vedic Hero Section */}
-//         {/* Kept your original logic: -mt-24 to overlap the hero */}
-
-//         <div className="relative z-10 -mt-24 px-4 md:px-12 pb-20">
-//           <div className="container mx-auto">
-//             {/* The White Card remains, so the image shows around the borders */}
-//             <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-orange-100">
-//               {/* <VedicHero /> */}
-//               <StatsSection />
-//             </div>
-//           </div>
-//         </div>
-
-//         <ZodiacCarousel/>
-
-//         {/* Services Section */}
-//         {/* Added 'relative z-10' so it sits above the overlay */}
-//         <div className="relative z-10 pb-16">
-//           {/* <BirthChart/> */}
-//           <ServicesSection />
-//         </div>
-//       </div>
-//       <WhatsAppWidget />
-
-//       {/* 3. FOOTER */}
-//       {/* mt-auto ensures footer pushes to bottom if content is short */}
-//       <div className="mt-auto">
-//         <Footer />
-//       </div>
-
-
-//     </div>
-//   );
-// };
-
-// export default HomePage;  
-
-import React from 'react';
-import HeroSection from './Vedicbanner'; // Your existing component
-import VedicHero from './Hero';  // Your existing component
-import WhatsAppWidget from './WhatsappWidget';
-import ServicesSection from './Servicesection';
-import ZodiacCarousel from './Zodiaccorosel';
-// import BirthChart from './KundliGenerator';
-import StatsSection from './Stats';
-import Footer from './Footer';
-import Astro from "../assets/astrobg.png"
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-orange-50">
+    /*
+      Root container:
+      - No padding / margin (App.css already zeroed #root)
+      - Dark cosmic base so any 1px seam between sections is invisible
+      - flex-col ensures sections stack vertically end-to-end
+    */
+    <div
+      className="flex flex-col min-h-screen w-full overflow-x-hidden"
+      style={{ backgroundColor: '#07040F' }}
+    >
 
-      {/* 1. HERO SECTION */}
-      {/* Ensure your HeroSection has a pb (padding-bottom) of roughly 20-32 to allow space */}
-      <div className="relative z-0 mb-16">
-        <HeroSection />
-      </div>
+      {/* ── 1. HERO ────────────────────────────────────────────────────────
+          HeroSection has its own full-bleed background image + overlay.
+          No wrapper padding or margin — let it touch the Navbar above
+          and Stats below with zero gap.
+      ──────────────────────────────────────────────────────────────────── */}
+      <HeroSection />
 
-      {/* 2. MAIN CONTENT (VedicHero) */}
-      {/* -mt-20: Pulls this section UP by 5rem to overlap the banner 
-          z-10:   Ensures this sits ON TOP of the banner
-          px-4:   Prevents content touching edges on mobile
-      */}
-      <div
-        className="relative"
-        style={{
-          // Apply the imported image here
-          backgroundImage: `url(${Astro})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundAttachment: 'fixed' // Makes the image stay still while scrolling (Parallax)
-        }}
-      >
-        {/* Optional: White Overlay so text remains readable on top of the image */}
-        <div className="absolute inset-0 bg-white/80 z-0"></div>
+      {/* ── 2. STATS ───────────────────────────────────────────────────────
+          StatsSection background: #0B0918.
+          Hero bottom fades to black → matches Stats' dark top perfectly.
+          No wrapper, no card, no padding — raw section fills full width.
+      ──────────────────────────────────────────────────────────────────── */}
+      <StatsSection />
 
-        {/* Vedic Hero Section */}
-        {/* Kept your original logic: -mt-24 to overlap the hero */}
+      {/* ── 3. SERVICES ────────────────────────────────────────────────────
+          ServicesSection background: #0B0918 (same as Stats).
+          Stats has a gold separator line at its bottom edge providing the
+          visual break — no extra margin needed.
+      ──────────────────────────────────────────────────────────────────── */}
+      <ServicesSection />
 
-        <div className="relative z-10 -mt-24 px-4 md:px-12 pb-20">
-          <div className="container mx-auto">
-            {/* The White Card remains, so the image shows around the borders */}
-            <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-orange-100">
-              {/* <VedicHero /> */}
-              <StatsSection />
-            </div>
-          </div>
-        </div>
+      {/* ── 4. ZODIAC CAROUSEL ─────────────────────────────────────────────
+          ZodiacCarousel has its own image bg + dark gradient overlay.
+          The overlay starts at solid #020617 at the very top, matching
+          the #0B0918 Services bottom exactly — seamless join.
+      ──────────────────────────────────────────────────────────────────── */}
+      <ZodiacCarousel />
 
-        {/* Services Section */}
-        {/* Added 'relative z-10' so it sits above the overlay */}
-        <div className="relative z-10 pb-16">
-          {/* <BirthChart/> */}
-          <ServicesSection />
-        </div>
-      </div>
-
-      {/* 3. ZODIAC CAROUSEL - Moved outside for proper alignment */}
-      {/* This section now has its own independent layout without parent constraints */}
-      <div className="relative z-10">
-        <ZodiacCarousel/>
-      </div>
-
-      <WhatsAppWidget />
-
-      {/* 4. FOOTER */}
-      {/* mt-auto ensures footer pushes to bottom if content is short */}
+      {/* ── 5. FOOTER ──────────────────────────────────────────────────────
+          Footer gets mt-auto to push it to the page bottom when content
+          is short (edge case). On full pages it just stacks naturally.
+      ──────────────────────────────────────────────────────────────────── */}
       <div className="mt-auto">
         <Footer />
       </div>
+
+      {/* ── FLOATING WHATSAPP WIDGET (fixed position, above everything) ─── */}
+      <WhatsAppWidget />
 
     </div>
   );
