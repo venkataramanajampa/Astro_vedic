@@ -1,4 +1,34 @@
 
+
+
+import React from 'react';
+import HeroSection from './Vedicbanner';
+import WhatsAppWidget from './WhatsappWidget';
+import ServicesSection from './Servicesection';
+import ZodiacCarousel from './Zodiaccorosel';
+import StatsSection from './Stats';
+import Footer from './Footer';
+
+/*
+  ─────────────────────────────────────────────────────────────────
+  LAYOUT PHILOSOPHY
+  ─────────────────────────────────────────────────────────────────
+  Each section already owns its own dark background:
+
+    HeroSection   → bg.png  +  black/60 overlay  →  dark ✅
+    StatsSection  → #0B0918                       →  dark ✅
+    ServicesSection → #0B0918                     →  dark ✅
+    ZodiacCarousel  → corbg.png + dark overlay    →  dark ✅
+    Footer          → dark navy                   →  dark ✅
+
+  So this file is JUST a clean stacking wrapper.
+  No background images, no white cards, no negative-margin tricks,
+  no `bg-orange-50`, no `bg-white/80` overlays — just sections
+  sitting edge-to-edge with the root bg colour (#07040F) as the
+  deepest safety net visible only if a section has no bg.
+  ─────────────────────────────────────────────────────────────────
+*/
+
 const HomePage = () => {
   return (
     /*
